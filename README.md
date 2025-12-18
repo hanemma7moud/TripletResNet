@@ -9,7 +9,7 @@ This repository contains the official implementation of the paper:
 ---
 
 <p align="center">
-  <img src="assets\images\Pipeline.png" alt="TripletResNet Architecture" width="800"/>
+  <img src="src\Pipeline.png" alt="TripletResNet Architecture" width="800"/>
   <br>
   <em>Figure 1: The proposed two-stage TripletResNet architecture.</em>
 </p>
@@ -20,7 +20,7 @@ TripletResNet utilizes a two-stage training process:
 2. **Classification:** Freezes the learned feature extractor and trains a lightweight classifier head.
 
 <p align="center">
-  <img src="assets/images/Embeddings.png" alt="t-SNE Visualization" width="600"/>
+  <img src="src/Embeddings.png" alt="t-SNE Visualization" width="600"/>
   <br>
   <em>Figure 2: t-SNE visualization showing improved class separation after metric learning.</em>
 </p>
