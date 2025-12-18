@@ -1,37 +1,41 @@
-\# TripletResNet: mTBI Diagnosis from 3D CT Scans
-
-
+# TripletResNet: mTBI Diagnosis from 3D CT Scans
 
 This repository contains the official implementation of the paper:
+**"TripletResNet: A Deep Metric Learning Approach for mTBI Diagnosis from 3D CT"**
 
-\*\*"TripletResNet: A Deep Metric Learning Approach for mTBI Diagnosis from 3D CT"\*\* \*Published in: Australasian Joint Conference on Artificial Intelligence (AJCAI 2025)\* \[Springer Link](https://link.springer.com/chapter/10.1007/978-981-95-4972-6\_23) | \[ArXiv Link](https://arxiv.org/abs/2311.14197)
+*Published in: Australasian Joint Conference on Artificial Intelligence (AJCAI 2025)*
+[Springer Link](https://link.springer.com/chapter/10.1007/978-981-95-4972-6_23) | [ArXiv Link](https://arxiv.org/abs/2311.14197)
 
+---
 
+<p align="center">
+  <img src="assets\images\Pipeline.png" alt="TripletResNet Architecture" width="800"/>
+  <br>
+  <em>Figure 1: The proposed two-stage TripletResNet architecture.</em>
+</p>
 
-\## Overview
-
+## Overview
 TripletResNet utilizes a two-stage training process:
+1. **Metric Learning:** Uses Triplet Loss to learn a discriminative embedding space for 3D CT scans.
+2. **Classification:** Freezes the learned feature extractor and trains a lightweight classifier head.
 
-1\.  \*\*Metric Learning:\*\* Uses Triplet Loss to learn a discriminative embedding space for 3D CT scans.
+<p align="center">
+  <img src="assets/images/Embeddings.png" alt="t-SNE Visualization" width="600"/>
+  <br>
+  <em>Figure 2: t-SNE visualization showing improved class separation after metric learning.</em>
+</p>
 
-2\.  \*\*Classification:\*\* Freezes the learned feature extractor and trains a lightweight classifier head.
-
-
-
-\## Requirements
-
+## Requirements
 Install dependencies via pip:
 
 ```bash
-
 pip install -r requirements.txt
+```
 
-Data Preparation
+## Data Preparation
 Due to privacy restrictions, the dataset is not included. To use this code with your own data, prepare CSV files in the data/ directory with the following format:
 
 File: data/train.csv (and valid.csv, test.csv)
-
-Code snippet
 
 scan,label
 /path/to/patient1_ct.nii.gz,0
@@ -41,34 +45,36 @@ scan: Absolute path to the NIfTI 3D image.
 
 label: 0 for Normal, 1 for mTBI.
 
-Usage
-Stage 1: Train Metric Learning (Feature Extractor)
+## Usage
+### Stage 1: Train Metric Learning (Feature Extractor)
 
-Bash
-
+```bash
 python train_metric.py
+```
 This saves the trained trunk model to results/metric_learning/models/.
 
-Stage 2: Train Classifier Update train_classifier.py to point to your best saved model from Stage 1:
+### Stage 2: Train Classifier
+Update train_classifier.py to point to your best saved model from Stage 1:
 
 Python
 
 PRETRAINED_PATH = "results/metric_learning/models/trunk_best.pth"
 Then run:
 
-Bash
-
+```bash
 python train_classifier.py
-Citation
+``` 
+## Citation
 If you use this code, please cite:
 
-Code snippet
 
-@inproceedings{ellethy2025tripletresnet,
-  title={TripletResNet: A Deep Metric Learning Approach for mTBI Diagnosis from 3D CT},
-  author={Ellethy, Hanem and Chandra, Shekhar S and Vegh, Viktor},
-  booktitle={Australasian Joint Conference on Artificial Intelligence},
-  pages={295--308},
-  year={2025},
-  organization={Springer}
+```bash
+@InProceedings{10.1007/978-981-95-4972-6_23,
+author="Your Name and Co-authors",
+title="TripletResNet: A Deep Metric Learning Approach for mTBI Diagnosis from 3D CT",
+booktitle="AI 2024: Advances in Artificial Intelligence",
+year="2024",
+publisher="Springer Nature Singapore",
+pages="305--317"
 }
+```
