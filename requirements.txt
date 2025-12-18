@@ -1,0 +1,10 @@
+torch
+torchvision
+monai
+pytorch-metric-learning
+pandas
+numpy
+nibabel
+scikit-learn
+seaborn
+matplotlib
